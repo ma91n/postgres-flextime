@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:14.3
+    environment:
+      POSTGRES_USER: sample
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+      TZ: "Asia/Tokyo"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./testdata/schema:/docker-entrypoint-initdb.d
