@@ -63,7 +63,9 @@ flex_timestamp
 
 ## Try
 
+```
 $ docker-compose up -d
 $ docker exec -ti postgres-flextime_postgres_1 bash
 #  psql -h localhost -p 5432 -U sample  -d postgres
 postgres=# SELECT flex_timestamp();
+```
