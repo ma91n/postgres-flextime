@@ -1,24 +1,18 @@
-DROP TABLE IF EXISTS company
-;
-CREATE TABLE company
+DROP TABLE IF EXISTS notification;
+CREATE TABLE notification
 (
-    company_cd   varchar(5)               NOT NULL,
-    company_name varchar(256)             NOT NULL,
-    founded_year integer                  NOT NULL,
-    status       varchar(1)               NOT NULL default 0,
-    created_at   timestamp with time zone NOT NULL,
-    updated_at   timestamp with time zone NOT NULL,
-    revision     integer                  NOT NULL,
-    CONSTRAINT company_pkc PRIMARY KEY (company_cd)
-)
-;
-
-CREATE TABLE flex_time
-(
-    seq_num  BIGSERIAL,
-    fix_time TIMESTAMPTZ
+    notification_id VARCHAR(32)              NOT NULL,
+    user_id         VARCHAR(20)              NOT NULL,
+    registered_at   TIMESTAMPTZ              NOT NULL,
+    title           VARCHAR(50)              NOT NULL,
+    content         VARCHAR(1000),
+    read_status_typ VARCHAR(1), -- 0:未読 1:既読 2:一括既読
+    opened_at       TIMESTAMPTZ,
+    created_at      TIMESTAMP WITH TIME ZONE NOT NULL,
+    updated_at      TIMESTAMP WITH TIME ZONE NOT NULL,
+    revision        BIGINT                   NOT NULL,
+    CONSTRAINT notification_pkc PRIMARY KEY (notification_id)
 );
-
 
 CREATE OR REPLACE FUNCTION flex_timestamp()
     RETURNS TIMESTAMPTZ AS
